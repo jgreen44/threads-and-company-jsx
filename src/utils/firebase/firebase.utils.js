@@ -29,8 +29,8 @@ const firebaseConfig = {
   appId: '1:533411237783:web:1c947a4971d1cc7554fed2',
 };
 
+// eslint-disable-next-line no-unused-vars
 const firebaseApp = initializeApp(firebaseConfig);
-console.log('firebaseApp :: ', firebaseApp);
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -59,7 +59,6 @@ export const addCollectionAndDocuments = async (
   });
 
   await batch.commit();
-  console.log('done');
 };
 
 export const getCategoriesAndDocuments = async () => {
@@ -98,7 +97,7 @@ export const createUserDocumentFromAuth = async (
         ...additionalInformation,
       });
     } catch (error) {
-      console.log('error creating the user', error.message);
+      throw new Error(`error creating user: ${error.message}`);
     }
   }
 
